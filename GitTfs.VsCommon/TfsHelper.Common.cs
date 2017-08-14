@@ -446,6 +446,10 @@ namespace Sep.Git.Tfs.VsCommon
                     .ToDictionary(b => b.Properties.RootItem.Item,
                         b => b.Properties.ParentBranch != null ? b.Properties.ParentBranch.Item : null,
                         (StringComparer.InvariantCultureIgnoreCase));
+
+                // Shameless hack to have a branch that was converted to a folder masquerade as a branch again. TFS does not allow converting it back for some reason
+                _allTfsBranches.Add("$/Astra/Release7.4-SimReg", "$/Astra/Release7.4");
+
                 return _allTfsBranches;
             }
         }
